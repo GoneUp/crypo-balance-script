@@ -1,0 +1,8 @@
+#Exchange;Key;Secret
+#Bitstamp needs a username: bitstamp;Key;Secret;Username
+
+bittrex;;
+bitstamp;;;
+binance;;
+bitfinex;;
+kraken;;
