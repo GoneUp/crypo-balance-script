@@ -18,8 +18,10 @@ pip install BitstampClient
 pip install git+https://github.com/ericsomdahl/python-bittrex.git
 pip install python-binance
 ```
-Then just run it
-`python ex_balance.py`
+Then just run it with:
+```
+python ex_balance.py
+```
 
 
 
