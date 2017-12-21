@@ -14,7 +14,7 @@ import krakenex
 import fileinput
 import bitstamp.client
 from binance.client import Client
-
+import coinbase.wallet.client
 
 currency_replacelist = dict({"XXBT" : "BTC", "XXRP" : "XRP", "XETH" : "ETH"," ZEUR" : "EUR", "XZEC" : "ZEC", "XXMR" : "XMR"})
 
@@ -126,6 +126,9 @@ class BittrexService(QueryInterface):
             cur = entry['Currency']
             value = entry['Balance']
 
+            if value == 0:
+                continue
+
             if cur not in balance:
                 balance[cur] = 0.0
             balance[cur] += value
@@ -154,8 +157,20 @@ class BinanceService(QueryInterface):
 
 class CoinbaseService(QueryInterface):
     def getBalances(self):
-        #TODO: ADD COINBASE
-        pass
+        client = coinbase.wallet.client.Client(api_key=self.key, api_secret=self.secret)
+        resp = client.get_accounts()
+
+        balance = dict()
+        for entry in resp['data']:
+            cur = entry['currency']
+            value = entry['balance']['amount']
+
+            # filter
+            if float(value) > 0:
+                balance[cur] = value
+        logging.debug(resp)
+
+        return balance
 
 
 def parseKeys(file):
