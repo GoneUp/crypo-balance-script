@@ -18,6 +18,7 @@ pip install krakenex
 pip install BitstampClient
 pip install git+https://github.com/ericsomdahl/python-bittrex.git
 pip install python-binance
+pip install coinbase
 ```
 Insert your API-Keys formatted as csv (see the keys.example) into a keys file in the folder of your script.
 The api keys need read access to the account/balances for the script to function.
